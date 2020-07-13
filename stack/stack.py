@@ -69,7 +69,7 @@ class Stack:
         # Check if list is empty
         if self.size == 0:
             return None
-        # Remove element at the top of the stack
+        # Remove element's tail
         # and assign it's value to popped variable
         popped = self.storage.remove_tail()
         # Subtract 1 from size value
