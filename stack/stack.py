@@ -19,11 +19,11 @@ class Stack:
         self.storage = []
 
     def __len__(self):
-        # Return current size
+        # Return number of elements in the stack
         return self.size
 
     def push(self, value):
-        # Add value to the end of storage list
+        # Add value to the top of the stack
         self.storage.append(value)
         # Set size to storage length
         self.size = len(self.storage)
@@ -32,7 +32,8 @@ class Stack:
         # Check if list is empty
         if self.size == 0:
             return None
-        # Assign popped value to popped variable
+        # Remove element at the top of the stack
+        # and assign it's value to popped variable
         popped = self.storage.pop()
         # Set size to storage list length
         self.size = len(self.storage)
