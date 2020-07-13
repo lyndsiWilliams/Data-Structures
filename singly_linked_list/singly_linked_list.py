@@ -12,7 +12,7 @@ class Node:
         return self.next
 
     def set_next(self, new_next):
-        # Sets the value of the next element to a usable variable
+        # Sets the value of the next element through parameter
         self.next = new_next
 
 
