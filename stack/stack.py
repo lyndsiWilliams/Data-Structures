@@ -48,6 +48,7 @@ class Stack:
         return popped
 """
 
+
 # LinkedList implementation
 class Stack:
     def __init__(self):
