@@ -13,6 +13,8 @@ return elements in Last In First Out order.
      In a linked list, the element only has access to itself and the elements directly
      in front of and/or behind it.
 """
+
+
 class Stack:
     def __init__(self):
         self.size = 0

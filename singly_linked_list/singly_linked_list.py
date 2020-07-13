@@ -15,25 +15,26 @@ class Node:
         # Sets the value of the next element to a usable variable
         self.next = new_next
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.tail = None 
+        self.tail = None
 
     def add_to_tail(self, value):
-        # Create a new Node from the value 
+        # Create a new Node from the value
         new_node = Node(value)
         # Check if the head and tail are empty
         # If both are empty, the whole stack is empty
         if self.head is None and self.tail is None:
-            # Refer both head and tail to the single node 
+            # Refer both head and tail to the single node
             self.head = new_node
-            # Set the new node to be the tail 
+            # Set the new node to be the tail
             self.tail = new_node
         else:
-            # Set the old tail's next to refer to the new Node 
+            # Set the old tail's next to refer to the new Node
             self.tail.set_next(new_node)
-            # Reassign self.tail to refer to the new Node 
+            # Reassign self.tail to refer to the new Node
             self.tail = new_node
 
     def remove_head(self):
@@ -42,13 +43,13 @@ class LinkedList:
             # If empty, go back on your merry way. Nothing to delete.
             return
         # If there's only one element in the linked list (no next element)
-        # both head and tail are pointing at the same Node 
+        # both head and tail are pointing at the same Node
         if not self.head.get_next():
-            head = self.head 
-            # Delete the linked list's head reference 
+            head = self.head
+            # Delete the linked list's head reference
             self.head = None
-            # Also delete the linked list's tail reference 
-            self.tail = None 
+            # Also delete the linked list's tail reference
+            self.tail = None
             return head.get_value()
         # Assign current head's value to val variable
         val = self.head.get_value()
