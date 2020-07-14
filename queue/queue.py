@@ -1,3 +1,6 @@
+# import sys
+# sys.path.append('D:\\lambda\\PYTHON\\Data-Structures\\stack\\stack.py')
+# from stack import Stack
 from singly_linked_list import LinkedList
 
 """
@@ -11,9 +14,11 @@ return elements in First In First Out order.
    Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Queue?
-   - The differences are almost the same as when one is implementing a Stack, except
+    - The differences are almost the same as when one is implementing a Stack, except
     when removing and returning the element in the front. In a Stack, you've got to
     remove the tail; in a Queue, you've got to remove the head.
+    - Stack must be add/removed from the SAME side, Queue must be add/removed from
+    the OPPOSITE side.
    
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
