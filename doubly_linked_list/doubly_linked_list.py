@@ -141,7 +141,15 @@ class DoublyLinkedList:
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        # Check for empty list
+        if self.head is None and self.tail is None:
+            # If empty, go back on your merry way. Nothing to delete.
+            return None
+        # Check if there's only one node
+        elif self.head is self.tail:
+            # Return as is, it's already at the front
+            return
+        
 
     """
     Deletes the input node from the List, preserving the 
