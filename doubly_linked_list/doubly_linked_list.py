@@ -29,8 +29,10 @@ class DoublyLinkedList:
     def add_to_head(self, value):
         # Add 1 to length
         self.length += 1
+
         # Create a new ListNode from the value
         new_node = ListNode(value)
+
         # Check for empty list
         if self.head is None:
             # New node is the head of the list now
@@ -38,6 +40,7 @@ class DoublyLinkedList:
             # Head and tail point to themselves since
             # this is the only item on the list now
             self.tail = self.head
+
         # List is not empty:
         else:
             # Set the new node's next to the old head (N)
@@ -55,8 +58,10 @@ class DoublyLinkedList:
     def remove_from_head(self):
         # Subtract 1 from length
         self.length -= 1
+
         # Assign current head's value to val variable
         val = self.head.value
+
         # Check if there's only one node
         if self.head is self.tail:
             # Delete both head and tail, since it's the only node
@@ -80,14 +85,17 @@ class DoublyLinkedList:
     def add_to_tail(self, value):
         # Add 1 to length
         self.length += 1
+
         # Create a new ListNode from the value
         new_node = ListNode(value)
+
         # Check for empty list
         if self.head is None and self.tail is None:
             # Head and tail both point to new node
             # Because there is now only one node in list
             self.head = new_node
             self.tail = new_node
+
         # List is not empty:
         else:
             # Set current node tail's next to the new node
@@ -105,12 +113,15 @@ class DoublyLinkedList:
     def remove_from_tail(self):
         # Subtract 1 from length
         self.length -= 1
+
         # Get deleted tail's value for returning
         val = self.tail.value
+
         # Check for empty list
         if self.head is None and self.tail is None:
             # If empty, go back on your merry way. Nothing to delete.
             return None
+            
         # Delete the current node
         self.tail = self.head = None
         # Return deleted value
@@ -129,26 +140,36 @@ class DoublyLinkedList:
         elif self.head is self.tail:
             # Return as is, it's already at the front
             return
+
+        # Store node in a variable
+        moving_node = node
         # Set inserted node's prev to None
-        node.prev = None
+        moving_node.prev = None
         # Set inserted node's next to self.head
-        node.next = self.head
+        moving_node.next = self.head
         # The node is now the head of the list
-        self.head = node
+        self.head = moving_node
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        # Check for empty list
-        if self.head is None and self.tail is None:
-            # If empty, go back on your merry way. Nothing to delete.
-            return None
-        # Check if there's only one node
-        elif self.head is self.tail:
-            # Return as is, it's already at the front
+        # Store node in a variable
+        moving_node = node
+
+        if moving_node is self.tail:
             return
+
+        if moving_node is self.head:
+            self.remove_from_head()
+            self.add_to_tail(moving_node.value)
+
+        else:
+            self.delete(moving_node)
+            self.add_to_tail(moving_node.value)
+            
+        
         
 
     """
@@ -156,7 +177,40 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
-        pass
+        # Store the node in a variable
+        unwanted_node = node
+
+        # Check if there's only one node in the list
+        if self.length == 1:
+            # Set head and tail to None
+            self.head = self.tail = None
+
+        # Check if it's the head
+        elif unwanted_node is self.head:
+            # Set the next node in line as the head
+            self.head = unwanted_node.next
+            # New head's prev should now be None
+            self.head.prev = None
+
+        # Check if it's the tail
+        elif unwanted_node is self.tail:
+            # Set the prev node in line as the tail
+            self.tail = unwanted_node.prev
+            # New tail's next should now be None
+            self.tail.next = None
+
+        # Otherwise, it's somewhere in the middle
+        else:
+            # Connect prev to next
+            unwanted_node.prev = unwanted_node.next
+            # Connect next to prev
+            unwanted_node.next = unwanted_node.prev
+
+        # Subtract 1 from length
+        self.length -= 1
+        # Return unwanted node's value
+        return unwanted_node.value
+
 
     """
     Finds and returns the maximum value of all the nodes 
