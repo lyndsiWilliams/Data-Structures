@@ -57,12 +57,12 @@ class DoublyLinkedList:
         self.length -= 1
         # Assign current head's value to val variable
         val = self.head.value
-        # Check if there's only one element
+        # Check if there's only one node
         if self.head is self.tail:
-            # Delete both head and tail, since it's the only element
+            # Delete both head and tail, since it's the only node
             self.head = None
             self.tail = None
-            # Return deleted element
+            # Return deleted node
             return val
         else:
             # Set current node's head to the node after the current head
@@ -78,7 +78,24 @@ class DoublyLinkedList:
     the old tail node's next pointer accordingly.
     """
     def add_to_tail(self, value):
-        pass
+        # Add 1 to length
+        self.length += 1
+        # Create a new ListNode from the value
+        new_node = ListNode(value)
+        # Check for empty list
+        if self.head is None and self.tail is None:
+            # Head and tail both point to new node
+            # Because there is now only one node in list
+            self.head = new_node
+            self.tail = new_node
+        # List is not empty:
+        else:
+            # Set current node tail's next to the new node
+            self.tail.next = new_node
+            # Set new node's prev to current node's tail
+            new_node.prev = self.tail
+            # The new node is now the tail of the list
+            self.tail = new_node
             
     """
     Removes the List's current tail node, making the 
