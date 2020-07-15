@@ -158,15 +158,21 @@ class DoublyLinkedList:
         # Store node in a variable
         moving_node = node
 
+        # Check if it's already the tail
         if moving_node is self.tail:
             return
 
+        # Check if it's the head
         if moving_node is self.head:
+            # Remove from the head
             self.remove_from_head()
+            # Add it to the tail
             self.add_to_tail(moving_node.value)
 
         else:
+            # Delete the node at it's current position
             self.delete(moving_node)
+            # Add it back to the end anew
             self.add_to_tail(moving_node.value)
             
         
