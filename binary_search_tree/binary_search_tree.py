@@ -26,10 +26,10 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        # compare the input value with the value of the Node
+        # Compare the input value with the value of the Node
         # if value < Node's value
         if value < self.value:
-            # we need to go left
+            # We need to go left
             # if we see that there is no left child...
             if self.left is None:
                 # wrap the value in a BSTNode and park it
@@ -53,22 +53,126 @@ class BSTNode:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # Check if the target is equal to the current node's value
+        if target == self.value:
+            return True
+        # Check if the left side exists and
+        # if the target is less than the current node's value
+        elif self.left and target < self.value:
+            return self.left.contains(target)
+        # Check if the right side exists and
+        # if the target is greater than the current node's value
+        elif self.right and target > self.value:
+            return self.right.contains(target)
+        # Otherwise, the target value doesn't exist in this tree
+        else:
+            return False
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # Check if there's a right node
+        if self.right:
+            # Recursion to the right
+            return self.right.get_max()
+        # Once there is no longer a right child
+        # We are at the right-most value, which is max
+        else:
+            return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # By checking the left before even setting the recursive function
+        # This will put things in descending order
+
+        # Check if there's a left node
+        if self.left:
+            # Recursion to the left
+            self.left.for_each(fn)
+
+        # The recursive function:
+        fn(self.value)
+
+        # Check if there's a right node
+        if self.right:
+            # Recursion to the right
+            self.right.for_each(fn)
+    
+    # Iterative depth-first traversal (DFT) for_each
+    # def for_each(self, fn):
+    #     # DFT: LIFO
+    #     # We'll use a stack
+    #     stack = []
+    #     stack.append(self) # self = root node
+
+    #     # If stack has nodes in it
+    #     # There are more nodes to traverse
+    #     while len(stack) > 0:
+    #         # pop the top node from the stack
+    #         current = stack.pop()
+
+    #         # add the current node's right child first
+    #         if current.right:
+    #             stack.append(current.right)
+
+    #         # add the current node's left child
+    #         if current.left:
+    #             stack.append(current.left)
+
+    #         # call the anonymous function
+    #         fn(current.value)
+
+
+    # iterative breadth-first traversal for_each
+    # def for_each(self, fn):
+    #     from collections import deque
+
+    #     # BFT: FIFO
+    #     # We'll use a queue to facilitate the ordering
+    #     queue = deque()
+    #     queue.append(self) # self = root node
+
+    #     # continue to traverse as long as
+    #     # there are nodes in the queue
+    #     while len(queue) > 0:
+    #         # pop the top node from the queue
+    #         current = queue.popleft()
+
+    #         # add the current node's left child first
+    #         if current.left:
+    #             queue.append(current.left)
+
+    #         # add the current node's right child
+    #         if current.right:
+    #             queue.append(current.right)
+            
+    #         # call the anonymous function
+    #         fn(current.value)
+
+
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # By checking the left before even setting the recursive function
+        # This should put things in descending order
+
+        # Reference the current node
+        current = node
+
+        # Check if there's a left node
+        if self.left:
+            # Recursion to the left
+            self.left.in_order_print(current.left)
+
+        # The recursive function:
+        print(current.value)
+
+        # Check if there's a right node
+        if self.right:
+            # Recursion to the right
+            self.right.in_order_print(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
