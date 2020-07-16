@@ -177,12 +177,52 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        from collections import deque
+
+        # We'll use a queue to facilitate the ordering
+        queue = deque()
+        queue.append(self) # self = root node
+
+        # continue to traverse as long as
+        # there are nodes in the queue
+        while len(queue) > 0:
+            # pop the top node from the queue
+            current = queue.popleft()
+
+            # add the current node's left child first
+            if current.left:
+                queue.append(current.left)
+
+            # add the current node's right child
+            if current.right:
+                queue.append(current.right)
+            
+            # call the anonymous function
+            print(current.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # We'll use a stack
+        stack = []
+        stack.append(self) # self = root node
+
+        # If stack has nodes in it
+        # There are more nodes to traverse
+        while len(stack) > 0:
+            # pop the top node from the stack
+            current = stack.pop()
+
+            # add the current node's right child first
+            if current.right:
+                stack.append(current.right)
+
+            # add the current node's left child
+            if current.left:
+                stack.append(current.left)
+
+            # call the anonymous function
+            print(current.value)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
