@@ -74,12 +74,21 @@ class BSTNode:
         if self.right:
             # Recursion to the right
             return self.right.get_max()
-        # The value that comes out is the max
+        # Once there is no longer a right child
+        # We are at the right-most value, which is max
         else:
             return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
+        # By checking the left before even setting the recursive function
+        # This will put things in descending order
+
+        # Check if there's a left node
+        if self.left:
+            # Recursion to the left
+            self.left.for_each(fn)
+
         # The recursive function:
         fn(self.value)
 
@@ -87,11 +96,57 @@ class BSTNode:
         if self.right:
             # Recursion to the right
             self.right.for_each(fn)
+    
+    # Iterative depth-first traversal (DFT) for_each
+    # def for_each(self, fn):
+    #     # DFT: LIFO
+    #     # We'll use a stack
+    #     stack = []
+    #     stack.append(self) # self = root node
 
-        # Check if there's a left node
-        if self.left:
-            # Recursion to the left
-            self.left.for_each(fn)
+    #     # If stack has nodes in it
+    #     # There are more nodes to traverse
+    #     while len(stack) > 0:
+    #         # pop the top node from the stack
+    #         current = stack.pop()
+
+    #         # add the current node's right child first
+    #         if current.right:
+    #             stack.append(current.right)
+
+    #         # add the current node's left child
+    #         if current.left:
+    #             stack.append(current.left)
+
+    #         # call the anonymous function
+    #         fn(current.value)
+
+
+    # iterative breadth-first traversal for_each
+    # def for_each(self, fn):
+    #     from collections import deque
+
+    #     # BFT: FIFO
+    #     # We'll use a queue to facilitate the ordering
+    #     queue = deque()
+    #     queue.append(self) # self = root node
+
+    #     # continue to traverse as long as
+    #     # there are nodes in the queue
+    #     while len(queue) > 0:
+    #         # pop the top node from the queue
+    #         current = queue.popleft()
+
+    #         # add the current node's left child first
+    #         if current.left:
+    #             queue.append(current.left)
+
+    #         # add the current node's right child
+    #         if current.right:
+    #             queue.append(current.right)
+            
+    #         # call the anonymous function
+    #         fn(current.value)
 
 
 
@@ -100,7 +155,24 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # By checking the left before even setting the recursive function
+        # This should put things in descending order
+
+        # Reference the current node
+        current = node
+
+        # Check if there's a left node
+        if self.left:
+            # Recursion to the left
+            self.left.in_order_print(current.left)
+
+        # The recursive function:
+        print(current.value)
+
+        # Check if there's a right node
+        if self.right:
+            # Recursion to the right
+            self.right.in_order_print(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
