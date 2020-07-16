@@ -229,8 +229,22 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        self.dft_print(node)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        # Reference the current node
+        current = node
+
+        # Check if there's a left node
+        if self.left:
+            # Recursion to the left
+            self.left.post_order_dft(current.left)
+
+        # Check if there's a right node
+        if self.right:
+            # Recursion to the right
+            self.right.post_order_dft(current.right)
+
+        # The recursive function:
+        print(current.value)
