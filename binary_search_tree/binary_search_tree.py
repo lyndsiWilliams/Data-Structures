@@ -229,6 +229,7 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
+        # Call previously-created method for easy solution
         self.dft_print(node)
 
     # Print Post-order recursive DFT
